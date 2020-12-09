@@ -20,12 +20,10 @@ class SummariserCosine:
           that ends with a period (.)
           Replace anything that isn't between
           a to z or A to Z with a space.
-
           Parameters
           ==========
           text:
              text string to split into individual sentences
-
           Return
           ======
           Returns a list of sentences split by spaces
@@ -48,7 +46,6 @@ class SummariserCosine:
           stock of stop words loaded from the nltk library.
           Vectors here mean frequency count of
           the words by index.
-
           Parameters
           ==========
           sentence:
@@ -57,7 +54,6 @@ class SummariserCosine:
              a list of words including the words in the passed in sentence
           stop_words:
              list of stop words to ignore or not take into consideration
-
           Return
           ======
           A dictionary of words with frequency of occurence of it in
@@ -79,7 +75,6 @@ class SummariserCosine:
           Check if two sentences are similar based
           on their vector similarity
           (similar number of frequenting words between them)
-
           Parameters
           ==========
           first_sentence:
@@ -88,7 +83,6 @@ class SummariserCosine:
              another text string representing a sentence
           stop_words:
              list of stop words to ignore or not take into consideration
-
           Return
           ======
           An decimal representation of the similarity between the
@@ -112,10 +106,8 @@ class SummariserCosine:
         """
           Create an similarity matrix using the sentences,
           round-robbing across all the sentences.
-
           So we know which sentences are similar
           to others.
-
           Parameters
           ==========
           first_sentence:
@@ -124,7 +116,6 @@ class SummariserCosine:
              another text string representing a sentence
           stop_words:
              list of stop words to ignore or not take into consideration
-
           Return
           ======
           An decimal representation of the similarity between the
@@ -149,14 +140,12 @@ class SummariserCosine:
           Rank all the similar sentences based on
           their similarities and then create the
           summarised text from the ranked sentences.
-
           Parameters
           ==========
           ranked_sentences:
              a list of sentences ranked by their score (descending order)
           top_n_sentences:
              number of sentences to consider from the top of the list
-
           Return
           ======
           A list of top n sentences ranked by their score (descending order)
@@ -178,14 +167,12 @@ class SummariserCosine:
         """
           Sort the sentences to bring the
           top ranked sentences to the surface
-
           Parameters
           ==========
           scores:
              scores of each of the sentences in the list of sentences
           sentences:
              a list of sentences
-
           Return
           ======
           a sorted list of sentences based on their scores (highest to lowest)
@@ -198,12 +185,10 @@ class SummariserCosine:
         """
           Using networkx's pagerank rank the sentences,
           generating a graph and scores for each sentence
-
           Parameters
           ==========
           sentence_similarity_martix:
             a matrix of sentence similarity (cross sentences)
-
           Return
           ======
           a sentence similarity graph and scores of the sentences in descending order
@@ -213,20 +198,18 @@ class SummariserCosine:
         return sentence_similarity_graph, scores
 
     # Generating Summary Method
-    def generate_summary(self, text, top_n_sentences):
+    def generate_summary(self, text, top_n_sentences=12):
         """
           Generate a summary by processing a text
           through various steps, returning the summarised text
           and a list of ranked sentences from which the
           summary was prepared
-
           Parameters
           ==========
           text:
             raw text to summarise, usually a long string of text made up of multiple sentences
           top_n_sentences:
             number of sentences to pick from the list of sentences to form the summary
-
           Return
           ======
           A list sentences that will form the summarised text (top n sentences)
@@ -248,3 +231,4 @@ class SummariserCosine:
         summarised_text = self.summarise_text(ranked_sentences, top_n_sentences)
 
         return summarised_text, ranked_sentences
+
